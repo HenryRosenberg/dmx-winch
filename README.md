@@ -28,6 +28,11 @@ ESP32-S3–based DMX512 winch controller for theater prop lifting. Supports web 
 ## Controller Parts List
 
 ![controller_inside](https://github.com/user-attachments/assets/7e719816-2242-4ac4-8e1b-4f8e5a703a09)
+<p align="center">
+  <img src="https://github.com/user-attachments/assets/b768c09d-fd3b-4b5e-a548-402da7661af9" width="48%" />
+  <img src="https://github.com/user-attachments/assets/82fef94e-797c-4b01-8674-bfe05170a1f3" width="48%" />
+</p>
+
 
 | Component | Part | Notes |
 |------------|------|-------|
@@ -159,7 +164,8 @@ $$\delta_{\text{max}} = \mathbf{0.29 \text{ mm}}$$
 - Electromagnetic brake control
 
 ## Web Interface
-Access at `http://DMXWinch.local` if mDNS is support on the network, else use the IP address assigned by DHCP.
+<img width="1728" height="1085" alt="Screenshot 2026-02-27 at 1 08 30 PM" src="https://github.com/user-attachments/assets/017abb60-902c-44ac-8a21-a5341644cbf2" />
+Access at http://DMXWinch.local if mDNS is supported on the network, else use the IP address assigned by DHCP.
 
 - Real-time position display
 - Stroke length, velocity, acceleration adjustment
@@ -168,6 +174,7 @@ Access at `http://DMXWinch.local` if mDNS is support on the network, else use th
 - Manual positioning for setup
 - Persistent settings (survives power loss)
 - Instant emergency stop button
+- Build using the ESP-DASH library
 
 ## Status LED (NeoPixel, inside controll cabinet)
 
@@ -188,9 +195,9 @@ Access at `http://DMXWinch.local` if mDNS is support on the network, else use th
 
 ## Homing Sequence
 
-1. Move up until limit switch
+1. Move up until the limit switch
 2. Drop configured distance (default 2")
-3. Set zero at drop point
+3. Set zero at the drop point
 4. Repeat drop if still on limit switch
 
 # Configuration
@@ -203,10 +210,6 @@ const char* password = "YourPassword";
 ```
 Adjust other parameters in `main.cpp` as needed to match the physical setup.
 
-## Webserver
-Navigate to http://dmxwinch.local if mDNS is enabled on your network,  otherwise use the IP address sent via Serial (115200 baud).
-Configure the settings on the webpage as needed. 
-
 # Safety Notes
 
 ## Automatic E-STOP triggers:
@@ -217,11 +220,3 @@ Configure the settings on the webpage as needed.
 ## Automatic recovery:
 - Limit hit during upward motion (re-homes)
 - DMX=0 received (if auto-home enabled)
-
-# Architecture
-
-**Core 0**: Tight loop running `winchMotor.run()` with watchdog disabled for jitter-free stepping.
-
-**Core 1**: DMX reception, WiFi, dashboard, safety monitoring, brake control.
-
-This split ensures smooth motion regardless of network or processing load.
