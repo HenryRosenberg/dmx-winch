@@ -72,15 +72,15 @@ ESP32-S3–based DMX512 winch controller for theater prop lifting. Supports web 
 [Original Calculation Spreadsheet](https://github.com/user-attachments/files/25564224/Chicago.Musical.Sign.Hoist.Calculations.xlsx)
 
 ### 1. Mass & Load Estimation (for ROXIE sign)
-* **$A$** = $8.3 \text{ ft}^2$ (Area of 3/4" Plywood)
+* **$A$** = $13.5 \text{ ft}^2$ (Area of 3/4" Plywood)
 * **$\sigma$** = $2 \text{ lb/ft}^2$ (Density of Plywood)
 * **$L$** = $16 \text{ ft}$ (Length of low profile steel Unistrut)
 * **$\lambda$** = $0.8 \text{ lb/ft}$ (Linear Density of Low Profile Steel Unistrut)
 * **$m_{\text{misc}}$** = $3 \text{ lb}$ (Bulbs & Wiring)
 
 $$m_{\text{est}} = (A \cdot \sigma) + (L \cdot \lambda) + m_{\text{misc}}$$
-$$m_{\text{est}} = (8.3 \cdot 2) + (16 \cdot 0.8) + 3 = \mathbf{32.4 \text{ lb}}$$
-* **Design Load Limit ($m$):** $\mathbf{50 \text{ lb} \ (22.68 \text{ kg})}$ *(Built-in 54% mass safety margin before dynamic load saftey factors)*
+$$m_{\text{est}} = (13.5 \cdot 2) + (16 \cdot 0.8) + 3 = \mathbf{42.8 \text{ lb}}$$
+* **Design Load Limit ($m$):** $\mathbf{50 \text{ lb} \ (22.68 \text{ kg})}$ (before dynamic saftey factors)
 
 ---
 
